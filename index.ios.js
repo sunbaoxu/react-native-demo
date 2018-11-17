@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
   },
 });
 
-console.log(MyApp,'bbbbbbbbbb')
+// console.log(MyApp,'bbbbbbbbbb')
 
 AppRegistry.registerComponent('MyApp', () => MyApp);
