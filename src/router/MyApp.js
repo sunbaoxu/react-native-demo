@@ -6,14 +6,13 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   View,
-  Text
+  Text,
+  AppRegistry
 } from 'react-native';
 
 // import MyApp from './src/router';
-// import './src/router/MyApp';
 
 // console.log(MyApp,'aaaaaaaaaaa')
 
@@ -29,7 +28,7 @@ export default class MyApp extends Component {
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
-          w我要疯了
+          Cmd+D or shake for dev menu
         </Text>
       </View>
     );
@@ -55,6 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-console.log(MyApp,'bbbbbbbbbb')
+
 
 AppRegistry.registerComponent('MyApp', () => MyApp);
+
