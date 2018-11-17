@@ -19,7 +19,7 @@ export default class MyApp extends Component{
     */
     render(){
         return (
-            <Text>sdfa</Text>
+            <Text>sdfa喂喂喂无法</Text>
         )
         // return(<Navigator
 

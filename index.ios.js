@@ -12,7 +12,7 @@ import {
   Text
 } from 'react-native';
 
-// import MyApp from './src/router';
+import Se from './src/router';
 // import './src/router/MyApp';
 
 // console.log(MyApp,'aaaaaaaaaaa')
@@ -30,6 +30,7 @@ export default class MyApp extends Component {
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
           w我要疯了
+          <Se />
         </Text>
       </View>
     );
