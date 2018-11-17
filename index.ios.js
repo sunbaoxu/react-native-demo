@@ -12,7 +12,9 @@ import {
   Text
 } from 'react-native';
 
-// import MyApp from './src/router'
+// import MyApp from './src/router';
+
+// console.log(MyApp,'aaaaaaaaaaa')
 
 export default class MyApp extends Component {
   render() {
@@ -52,4 +54,5 @@ const styles = StyleSheet.create({
   },
 });
 
+console.log(MyApp,'bbbbbbbbbb')
 AppRegistry.registerComponent('MyApp', () => MyApp);
