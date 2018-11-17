@@ -4,10 +4,8 @@ import {Navigator} from 'react-native-deprecated-custom-components';
 import {
     AppRegistry
   } from 'react-native';
-//首页
-
-import ShangCode from '~/shang/shangList';
-// import {initPage} from './initPage';
+//默认
+import {initPage} from './initPage';
 
 export default class MyApp extends Component{
     /*
@@ -15,16 +13,13 @@ export default class MyApp extends Component{
         也就是默认的主轴是纵向的。
     */
     render(){
-        // return (
-        //     <Text>sdfa喂喂喂无法</Text>
-        // )
         return(<Navigator
 
             //初始化路由，指定FirstJump为首次渲染的组件   
             initialRoute={
                 {
                     name :'首页',
-                    component:ShangCode
+                    component:initPage.ShangCode
                 }
             }
 

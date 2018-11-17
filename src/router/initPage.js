@@ -15,6 +15,5 @@ import ShangCode from '~/shang/shangList';
 // import ShangCode from '~/shang/shangCode';
 
 export const initPage = {
-    page : ShangCode
-  
+    ShangCode
 }
