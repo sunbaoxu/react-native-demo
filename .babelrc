@@ -1,0 +1,25 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+    ["babel-plugin-root-import",
+      [{
+        "rootPathPrefix": "~",
+        "rootPathSuffix": "src/views"
+      },
+      {
+        "rootPathPrefix": "^",
+        "rootPathSuffix": "src/assets"
+      },
+      {
+        "rootPathPrefix": "@",
+        "rootPathSuffix": "src/commons"
+      },
+      {
+        "rootPathPrefix": "$",
+        "rootPathSuffix": "src/api"
+      }
+    ]
+    ]
+  ]
+}
+
