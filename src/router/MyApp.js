@@ -3,8 +3,9 @@
  * https://github.com/facebook/react-native
  * @flow
  */
+'use strict'
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import {
   StyleSheet,
   View,
@@ -16,7 +17,7 @@ import {
 
 // console.log(MyApp,'aaaaaaaaaaa')
 
-export default class MyApp extends Component {
+export default class MyApp extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
@@ -24,7 +25,7 @@ export default class MyApp extends Component {
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          To get st规划局可比NSalex.ios.js
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
