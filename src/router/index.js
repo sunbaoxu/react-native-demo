@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import {Navigator} from 'react-native-deprecated-custom-components';
 //首页
-import {initPage} from './initPage';
+
+import ShangCode from '~/shang/shangList';
+// import {initPage} from './initPage';
 
 export default class Start extends Component{
     /*
@@ -16,7 +18,7 @@ export default class Start extends Component{
             initialRoute={
                 {
                     name :'首页',
-                    component:initPage.page
+                    component:ShangCode
                 }
             }
 

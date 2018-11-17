@@ -19,7 +19,7 @@ export default class ShangCode extends Component{
             arr :[]
         }
 
-        console.log(this.props,'bbbbbbbbbbb')
+        // console.log(this.props,'bbbbbbbbbbb')
     }
 
     componentWillMount (){
