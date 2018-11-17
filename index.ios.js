@@ -13,7 +13,7 @@
 // } from 'react-native';
 
 // import Se from './src/router';
-import './src/router/MyApp';
+import './src/router';
 
 // console.log(MyApp,'aaaaaaaaaaa')
 

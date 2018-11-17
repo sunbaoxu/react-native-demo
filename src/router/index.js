@@ -1,12 +1,9 @@
 //import引入相关组件
 import React, { Component } from 'react';
 import {Navigator} from 'react-native-deprecated-custom-components';
-// import {
-//     AppRegistry,
-//     StyleSheet,
-//     View,
-//     Text
-//   } from 'react-native';
+import {
+    AppRegistry
+  } from 'react-native';
 //首页
 
 import ShangCode from '~/shang/shangList';
@@ -62,3 +59,6 @@ export default class MyApp extends Component{
         )
     }
 }
+
+
+AppRegistry.registerComponent('MyApp', () => MyApp);
