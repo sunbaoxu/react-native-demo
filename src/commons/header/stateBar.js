@@ -2,19 +2,19 @@
 import React, { Component } from 'react';
 
 import {
-    Text,
-    View
+	Text,
+	View
 } from 'react-native';
 
 export default class StatusBar extends Component{
 
-    render() {
-        return (
-            <View>
-                <Text>
-                    返回
-                </Text>
-            </View>
-        )
-    }
+	render() {
+		return (
+			<View>
+				<Text>
+						返回
+				</Text>
+			</View>
+		)
+	}
 }

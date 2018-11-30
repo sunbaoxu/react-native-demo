@@ -22,6 +22,15 @@ let comcs = StyleSheet.create(
     },
     gBtnBoxButtonOn :{
         backgroundColor:res.blue
+    },
+    gCenY :{
+        display:'flex'
+
+    },
+    gTextOver :{
+        // overflow: 'hidden',
+        // textOverflow: 'ellipsis',
+        // writingDirection: 'nowrap'
     }
 });
 
