@@ -17,13 +17,15 @@ import {
       backgroundColor:res.white
     },
     listBox :{
-      borderColor:res.eee,
-      borderBottomWidth:1,
-      borderStyle:'solid',
       height:64,
       paddingLeft:15,
       paddingRight:15,
       justifyContent:'center'
+    },
+    listBorder:{
+      borderColor:res.eee,
+      borderBottomWidth:1,
+      borderStyle:'solid'
     },
     listtitle :{
       fontSize:12,

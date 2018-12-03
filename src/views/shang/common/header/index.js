@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import {
 	Text,
   View,
-  Image
+  Image,
+  TouchableHighlight
 } from 'react-native';
 import cs from './style';
 import coms from '^/cs/coms';
@@ -24,17 +25,22 @@ export default class StatusBar extends Component{
     let obj = this.props.obj,
         _this =this.state;
     /**更多按钮 */
-    btnBox = <View style={cs.btnbox}>
-              <Image source={require('^/img/icon/jian.png')} style={[cs.icon,_this.numLines && cs.iconTop]}/>
-              <Text 
-              style={cs.btntext} 
+    btnBox = <TouchableHighlight
+              underlayColor="transparent" 
               onPress={()=>{
-              this.setState({
-                numLines:_this.numLines?null:2,
-                btnText:!_this.numLines?'查看更多':'收起更多'
-              });
-            }}>{_this.btnText}</Text>
-            </View> 
+                this.setState({
+                  numLines:_this.numLines?null:2,
+                  btnText:!_this.numLines?'查看更多':'收起更多'
+                });
+              }}
+            >
+              <View style={[cs.btnbox,coms.gcencen]}>
+                <Image source={require('^/img/icon/jian.png')} style={[cs.icon,_this.numLines && cs.iconTop]}/>
+                <Text 
+                style={cs.btntext} 
+                >{_this.btnText}</Text>
+              </View> 
+            </TouchableHighlight>
 
 		return (
 			<View style={cs.header}>

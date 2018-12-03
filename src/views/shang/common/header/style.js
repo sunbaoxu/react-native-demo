@@ -7,8 +7,10 @@ let cs = StyleSheet.create(
 {
   header :{
     backgroundColor:res.white,
-    padding:15,
-    marginBottom:10
+    marginBottom:10,
+    paddingLeft:15,
+    paddingRight:15,
+    paddingTop:15
   },
   dl :{
     flexDirection:'row',
@@ -43,12 +45,11 @@ let cs = StyleSheet.create(
     lineHeight:18,
     paddingLeft:12,
     paddingRight:12,
-    marginBottom:12,
     minHeight:18
   },
   btnbox :{
-    flexDirection:'row',
-    justifyContent:'center'
+    paddingTop:12,
+    paddingBottom:15
   },
   btntext :{
     fontSize:12,

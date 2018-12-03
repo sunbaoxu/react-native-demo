@@ -82,7 +82,7 @@ export default class ShangCode extends Component{
 											});
 										}}
 									>
-										<View style={cs.listBox} >
+										<View style={[cs.listBox,i!==this.state.arr.length-1&& cs.listBorder]} >
 											<View><Text style={cs.listtitle}>{m.cName}</Text></View>
 											<View style={cs.box}>
 												<View style={[cs.box]}>

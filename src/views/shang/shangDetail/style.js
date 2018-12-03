@@ -17,43 +17,21 @@ import {
       backgroundColor:res.white
     },
     listBox :{
-      borderColor:res.eee,
-      borderBottomWidth:1,
-      borderStyle:'solid',
-      height:64,
+      height:54,
       paddingLeft:15,
-      paddingRight:15,
-      justifyContent:'center'
+      paddingRight:15
     },
-    listtitle :{
-      fontSize:12,
-      width:200,
-      paddingBottom:8
+    icon:{
+      width:20,
+      height:20,
+      marginRight:5
     },
-    box:{
-      flexDirection:'row'
+    title :{
+      fontSize:16
     },
-    qibox :{
-      color:res.gray,
-      fontSize:11,
-      lineHeight:12
-    },
-    nper :{
-      paddingTop:1
-    },
-    money :{
-      color:res.blue,
-      fontSize:11
-    },
-    router :{
-      flex:1,
-      flexDirection:'row',
-      justifyContent:'flex-end'
-    },
-    icon :{
-      width:14,
-      height:14
-    },
+    name:{
+      fontSize:14
+    }
   });
   
   module.exports = cs;

@@ -64,6 +64,7 @@ export const res = {
   marRight: 10,
   // 内边距
   pad30: 30,
+  pad15: 15,
   // 导航的leftItem的左间距
   navMarLeft: 15,
   // 导航的rightItem的右间距

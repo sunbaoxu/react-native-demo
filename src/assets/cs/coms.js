@@ -6,8 +6,8 @@ import {res} from './resect'
 let comcs = StyleSheet.create(
 {
     gBtnBox :{
-        paddingLeft:res.pad30,
-        paddingRight:res.pad30,
+        paddingLeft:res.pad15,
+        paddingRight:res.pad15,
         paddingTop:45
     },
     gBtnBoxButton :{
@@ -23,10 +23,25 @@ let comcs = StyleSheet.create(
     gBtnBoxButtonOn :{
         backgroundColor:res.blue
     },
-    gCenY :{
-        display:'flex'
-
-    },
+    gceny :{
+      flexDirection:'row',
+			alignItems:'center'
+		},
+		gcencen:{
+			flexDirection:'row',
+			justifyContent:'center',
+			alignItems:'center',
+		},
+		gfencen:{
+			alignItems:'center',
+      flexDirection:'row',
+      justifyContent:'space-between'
+		},
+		gborder:{
+			borderColor:res.eee,
+      borderBottomWidth:1,
+      borderStyle:'solid',
+		},
     gTextOver :{
         // overflow: 'hidden',
         // textOverflow: 'ellipsis',
