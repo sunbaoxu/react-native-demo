@@ -57,17 +57,11 @@ export default class LoginBox extends Component{
             this.setTimeFn()
         }
         else if(data.code === -200){
-            // this.setState({
-                
-            // });
             this.getImgSend();
             this.setState({passAsync:false});
         } else{
             this.refs.toast.show(data.message);
             this.getImgSend();
-            // this.setState({
-                
-            // });
             this.setState({passAsync:false});
         }
     }

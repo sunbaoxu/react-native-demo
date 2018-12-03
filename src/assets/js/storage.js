@@ -90,10 +90,11 @@ var local = {
                 return  JSON.parse(ret);
             }).catch(err => {
                 /**
-                 * 抛出错误
+                 * 没有返回null
                  * 注释部分为抛出详细错误
                  * */
-                throw err;
+                return null
+                // throw err;
                 /* switch (err.name) {
                      case 'NotFoundError':
                          throw err.message;

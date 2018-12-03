@@ -12,12 +12,33 @@ import coms from '^/cs/coms';
 export default class StatusBar extends Component{
   constructor(props){
     super(props);
+
+    this.state = {
+      maxHeight :null,
+      numLines:null,
+      async: false,
+      btnText:'查看更多'
+    }
   }
 	render() {
-    let obj = this.props.obj;
-    console.log(obj,'aaaaa')
+    let obj = this.props.obj,
+        _this =this.state;
+    /**更多按钮 */
+    btnBox = <View style={cs.btnbox}>
+              <Image source={require('^/img/icon/jian.png')} style={[cs.icon,_this.numLines && cs.iconTop]}/>
+              <Text 
+              style={cs.btntext} 
+              onPress={()=>{
+              this.setState({
+                numLines:_this.numLines?null:2,
+                btnText:!_this.numLines?'查看更多':'收起更多'
+              });
+            }}>{_this.btnText}</Text>
+            </View> 
+
 		return (
 			<View style={cs.header}>
+        {/* 商家logo，title */}
 				<View style={cs.dl}>
           <View style={cs.dt}>
             <Image source={require('^/img/bus.png')} style={cs.dtimg}/>
@@ -27,9 +48,26 @@ export default class StatusBar extends Component{
             <Text style={[cs.ddtext,coms.gTextOver]} numberOfLines={1}>{obj.orgAddrDetailed}</Text>
           </View>
         </View>
-        <View style={cs.p}>
-          <Text numberOfLines={2} style={cs.ptext}>{obj.remark}</Text>
+        {/* 商家介绍 */}
+        <View>
+          <Text 
+          numberOfLines={_this.numLines} 
+          style={cs.ptext}
+          onLayout={(e)=>{
+            let h = e.nativeEvent.layout.height;
+            //第一次测量view的最大高度
+            if(h >37 && !_this.async){
+              this.setState({
+                numLines:2,
+                async:true
+              });
+            }
+        }}
+        >{obj.remark}</Text>
+
+        {/* 更多按钮 */}
         </View>
+        {_this.numLines || _this.async?btnBox:<Text></Text>}
 			</View>
 		)
 	}

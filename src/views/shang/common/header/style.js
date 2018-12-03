@@ -25,24 +25,43 @@ let cs = StyleSheet.create(
     height:50
   },
   dd : {
-    fontSize:12,
     flex:1,
     justifyContent:'center'
-
   },
   title:{
     color:res.blue,
-    paddingBottom:4
+    paddingBottom:4,
+    fontSize:12
   },
   ddtext :{
-    color:res.gray
+    color:res.gray,
+    fontSize:12
   }, 
-  p:{
-    marginBottom:14
-  },
   ptext :{
-    fontSize:10,
-    color:res.gray6
+    fontSize:12,
+    color:res.gray6,
+    lineHeight:18,
+    paddingLeft:12,
+    paddingRight:12,
+    marginBottom:12,
+    minHeight:18
+  },
+  btnbox :{
+    flexDirection:'row',
+    justifyContent:'center'
+  },
+  btntext :{
+    fontSize:12,
+    color:res.gray
+  },
+  icon : {
+    width:15,
+    height:15,
+    transform: [{rotateZ:'90deg'}],
+    marginRight:4
+  },
+  iconTop:{
+    transform: [{rotateZ:'-90deg'}]
   }
 });
 
