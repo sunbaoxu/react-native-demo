@@ -8,8 +8,6 @@ let cs = StyleSheet.create(
   header :{
     justifyContent:'flex-end'
   },
-  modalBox:{
-  },
   flex :{
     flex:1,
     backgroundColor:'rgba(0,0,0,0.4)'
@@ -18,8 +16,7 @@ let cs = StyleSheet.create(
     backgroundColor:res.white,
     paddingTop:10,
     paddingLeft:25,
-    paddingRight:25,
-    backgroundColor:'green'
+    paddingRight:25
   },
   title:{
     fontSize:14,

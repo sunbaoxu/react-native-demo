@@ -43,7 +43,6 @@ export default class StatusBar extends Component{
       animationType="slide"
       transparent={true}
       onRequestClose={() => { 
-        alert('modal')
         this.props.onCloseFn(obj)
       }}
       visible ={this.props.async}>
@@ -52,82 +51,81 @@ export default class StatusBar extends Component{
         onPress={() =>{
           this.props.onCloseFn(this.props.planObj)
       }}></Text>
-      <View style={cs.modalBox}>
-        
-        {/* 主要内容 */}
-        <View style={cs.main}>
-          <View>
-            <Text style={cs.title}>已选方案：”{obj.planName}“</Text>
-            {/* 方案列表 */}
-            <ScrollView style={cs.scrollbox}>
-              <View style={cs.listmain}>
-                {
-                  arr.map((m,i)=>{
-                  return  <View key={i} 
-                            style={
-                            [ cs.listbox,
-                              i%3===1?cs.listcen:'',
-                              i%3===2?cs.listrig:''
-                          ]}>
-                            <View style={[cs.borRadius,m.planId ===obj.planId ?cs.boron:'']}>
-                              <TouchableOpacity 
-                                onPress={() =>{
-                                  this.setState({
-                                    obj:m
-                                  })
-                              }}>
-                                <Text 
-                                  style={[cs.list,m.planId ===obj.planId ?cs.liston:'']} >{m.planName}</Text>
-                              </TouchableOpacity>
-                            </View>
-                          </View>
-                  })
-                }
-              </View>
-            </ScrollView>
-            {/* 还款期数 */}
-            <View style={[coms.gfencen,cs.qibox,coms.gborder]}>
-              <View style={coms.gceny}>
-                <Text style={cs.gray}>机构代偿期：</Text>
-                <Text style={cs.gray3}>{obj.orgNper}期</Text>
-              </View>
-              <View style={coms.gceny}>
-                <Text style={cs.gray}>低额还款期：</Text>
-                {
-                  obj.lowRate <=0 ? 
-                  <Text style={cs.gray3}>
-                    <Text>{obj.lowNper}期</Text>0期
-                  </Text>
-                  :
-                  <Text style={cs.gray3}>{obj.lowNper}期</Text>
-                }
-              </View>
-              <View style={coms.gceny}>
-                <Text style={cs.gray}>高额还款期：</Text>
-                {
-                  obj.highRate <=0 ? 
-                  <Text style={cs.gray3}>
-                    <Text>{obj.highNper}期</Text>0期
-                  </Text>
-                  :
-                  <Text style={cs.gray3}>{obj.highNper}期</Text>
-                }
-              </View>
+      {/* 主要内容 */}
+      <View style={cs.main}>
+        <View>
+          <Text style={cs.title}>已选方案：”{obj.planName}“</Text>
+          {/* 方案列表 */}
+          <ScrollView style={cs.scrollbox}>
+            <View style={cs.listmain}>
+              {
+                arr.map((m,i)=>{
+                return (
+                <View 
+                    key={i} 
+                    style={
+                    [ cs.listbox,
+                      i%3===1?cs.listcen:'',
+                      i%3===2?cs.listrig:''
+                  ]}>
+                    <View style={[cs.borRadius,m.planId ===obj.planId ?cs.boron:'']}>
+                      <TouchableOpacity 
+                        onPress={() =>{
+                          this.setState({
+                            obj:m
+                          })
+                      }}>
+                        <Text 
+                          style={[cs.list,m.planId ===obj.planId ?cs.liston:'']} >{m.planName}</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>)
+                })
+              }
             </View>
-            {/* 个人还款期数 */}
-            <View style={[cs.userbox,coms.gfencen]}>
-              <Text style={cs.usertitle}>个人还款期数：</Text>
-              {/* 个人还款期数 */}
-              {this.userFn(obj)}
+          </ScrollView>
+          {/* 还款期数 */}
+          <View style={[coms.gfencen,cs.qibox,coms.gborder]}>
+            <View style={coms.gceny}>
+              <Text style={cs.gray}>机构代偿期：</Text>
+              <Text style={cs.gray3}>{obj.orgNper}期</Text>
+            </View>
+            <View style={coms.gceny}>
+              <Text style={cs.gray}>低额还款期：</Text>
+              {
+                obj.lowRate <=0 ? 
+                <Text style={cs.gray3}>
+                  <Text>{obj.lowNper}期</Text>0期
+                </Text>
+                :
+                <Text style={cs.gray3}>{obj.lowNper}期</Text>
+              }
+            </View>
+            <View style={coms.gceny}>
+              <Text style={cs.gray}>高额还款期：</Text>
+              {
+                obj.highRate <=0 ? 
+                <Text style={cs.gray3}>
+                  <Text>{obj.highNper}期</Text>0期
+                </Text>
+                :
+                <Text style={cs.gray3}>{obj.highNper}期</Text>
+              }
             </View>
           </View>
+          {/* 个人还款期数 */}
+          <View style={[cs.userbox,coms.gfencen]}>
+            <Text style={cs.usertitle}>个人还款期数：</Text>
+            {/* 个人还款期数 */}
+            {this.userFn(obj)}
+          </View>
         </View>
-        <Text
-          style={cs.btnbox} 
-          onPress={() =>{
-            this.props.onCloseFn(obj)
-          }}>确定</Text>
       </View>
+      <Text
+        style={cs.btnbox} 
+        onPress={() =>{
+          this.props.onCloseFn(obj)
+        }}>确定</Text>
 			</Modal>
 		)
 	}
