@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import {
 	Text,
   View,
-  Image,
-  TouchableHighlight,
+  TouchableOpacity,
   Modal,
   ScrollView
 } from 'react-native';
@@ -16,15 +15,24 @@ export default class StatusBar extends Component{
   constructor(props){
     super(props);
     this.state = {
-      async:false,
-      obj :{}
+      obj :this.props.planObj
     }
   }
-  //modal  显示
-  modalAsyncFn  (obj) {
-    this.setState({async:true,obj});
-  }
+  /**个人还款期数 */
+  userFn (obj) {
+    let str='';
+    if(obj.lowRate<=0 || obj.highRate<=0){
+      str = 'userNper';
+    } else if(obj.lowRate>0 && obj.highRate>0){
+      str = 'userNper';
+    } else if(obj.lowNper>0){
+      str = 'userNper';
+    } else if(obj.highNper>0){
+      str = 'userNper';
+    }
 
+    return <Text>{obj[str]}期</Text>
+  }
   
 	render() {
     let arr= this.props.arr,
@@ -34,11 +42,23 @@ export default class StatusBar extends Component{
       style={cs.header}
       animationType="slide"
       transparent={true}
-      visible ={this.state.async}>
+      onRequestClose={() => { 
+        alert('modal')
+        this.props.onCloseFn(obj)
+      }}
+      visible ={this.props.async}>
+      {/* 半透明 */}
+      <Text style={cs.flex}
+        onPress={() =>{
+          this.props.onCloseFn(this.props.planObj)
+      }}></Text>
       <View style={cs.modalBox}>
+        
+        {/* 主要内容 */}
         <View style={cs.main}>
           <View>
             <Text style={cs.title}>已选方案：”{obj.planName}“</Text>
+            {/* 方案列表 */}
             <ScrollView style={cs.scrollbox}>
               <View style={cs.listmain}>
                 {
@@ -50,14 +70,22 @@ export default class StatusBar extends Component{
                               i%3===2?cs.listrig:''
                           ]}>
                             <View style={[cs.borRadius,m.planId ===obj.planId ?cs.boron:'']}>
-                              <Text style={[cs.list,m.planId ===obj.planId ?cs.liston:'']}>{m.planName}</Text>
+                              <TouchableOpacity 
+                                onPress={() =>{
+                                  this.setState({
+                                    obj:m
+                                  })
+                              }}>
+                                <Text 
+                                  style={[cs.list,m.planId ===obj.planId ?cs.liston:'']} >{m.planName}</Text>
+                              </TouchableOpacity>
                             </View>
                           </View>
                   })
                 }
               </View>
             </ScrollView>
-            {/* 期数 */}
+            {/* 还款期数 */}
             <View style={[coms.gfencen,cs.qibox,coms.gborder]}>
               <View style={coms.gceny}>
                 <Text style={cs.gray}>机构代偿期：</Text>
@@ -65,21 +93,40 @@ export default class StatusBar extends Component{
               </View>
               <View style={coms.gceny}>
                 <Text style={cs.gray}>低额还款期：</Text>
-                <Text style={cs.gray3}>{}期</Text>
+                {
+                  obj.lowRate <=0 ? 
+                  <Text style={cs.gray3}>
+                    <Text>{obj.lowNper}期</Text>0期
+                  </Text>
+                  :
+                  <Text style={cs.gray3}>{obj.lowNper}期</Text>
+                }
               </View>
               <View style={coms.gceny}>
                 <Text style={cs.gray}>高额还款期：</Text>
-                <Text style={cs.gray3}>{}期</Text>
+                {
+                  obj.highRate <=0 ? 
+                  <Text style={cs.gray3}>
+                    <Text>{obj.highNper}期</Text>0期
+                  </Text>
+                  :
+                  <Text style={cs.gray3}>{obj.highNper}期</Text>
+                }
               </View>
             </View>
             {/* 个人还款期数 */}
             <View style={[cs.userbox,coms.gfencen]}>
               <Text style={cs.usertitle}>个人还款期数：</Text>
-              <Text style={cs.userqi}>{}期</Text>
+              {/* 个人还款期数 */}
+              {this.userFn(obj)}
             </View>
           </View>
         </View>
-        <Text style={cs.btnbox}>确定</Text>
+        <Text
+          style={cs.btnbox} 
+          onPress={() =>{
+            this.props.onCloseFn(obj)
+          }}>确定</Text>
       </View>
 			</Modal>
 		)

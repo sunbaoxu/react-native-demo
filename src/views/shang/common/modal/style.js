@@ -5,17 +5,21 @@ import {res} from '^/cs/resect';
 
 let cs = StyleSheet.create(
 {
-  modalBox:{
-    backgroundColor:'rgba(0,0,0,0.4)',
-    width:'100%',
-    height:'100%',
+  header :{
     justifyContent:'flex-end'
+  },
+  modalBox:{
+  },
+  flex :{
+    flex:1,
+    backgroundColor:'rgba(0,0,0,0.4)'
   },
   main :{
     backgroundColor:res.white,
     paddingTop:10,
     paddingLeft:25,
-    paddingRight:25
+    paddingRight:25,
+    backgroundColor:'green'
   },
   title:{
     fontSize:14,
@@ -23,7 +27,7 @@ let cs = StyleSheet.create(
     height:22
   },
   qibox :{
-    height:30,
+    height:30
   },
   userbox :{
     height:45
@@ -75,7 +79,7 @@ let cs = StyleSheet.create(
     alignItems:'flex-end'
   },
   borRadius :{
-    borderRadius:8,
+    borderRadius:4,
     backgroundColor:res.f0,
     width:96,
     height:40,

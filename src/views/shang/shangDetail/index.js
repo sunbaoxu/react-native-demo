@@ -23,7 +23,8 @@ export default class ShangCode extends Component{
 			obj :{},
 			arr :[],
 			planText :'',
-			planObj:{}
+			planObj:{},
+			async:false
 		}
 	}
 
@@ -54,8 +55,8 @@ export default class ShangCode extends Component{
 
 		if(data.respCode === '000'){
 			let obj = await storage.get('lb-bus-play-obj').then(res=>{
-									return res;
-								});
+					return res;
+				});
 			this.setState({
 				arr:data.plans,
 				planObj:obj ?JSON.parse(obj):data.plans[0]
@@ -64,7 +65,13 @@ export default class ShangCode extends Component{
 			this.refs.toast.show(data.respMesg)
 		}
 	}
-
+	/**关闭 方案遮罩 */
+	onCloseFn (obj) {
+		this.setState({
+			planObj:obj,
+			async:false
+		});
+	}
 
 	render() {
 		let _this = this.state;
@@ -85,24 +92,26 @@ export default class ShangCode extends Component{
 							<Text style={cs.name}>{_this.obj.cName}</Text>
 						</View>
 						{/* 分期方案 */}
-						<View style={[cs.listBox,coms.gfencen]}>
-							<View style={coms.gceny}>
-								<Image source={require('^/img/icon/money.png')} style={[cs.icon]}/>
-								<Text style={cs.title}>分期方案</Text>
-							</View>
-							<TouchableHighlight
+						<TouchableHighlight
 								underlayColor="transparent"
 								onPress={() =>{
-									//modal  显示
-									this.refs.modalBox.modalAsyncFn(_this.planObj);
+									this.setState({
+										async:true
+									});
 								}}
 							>
+							<View style={[cs.listBox,coms.gfencen]}>
+								<View style={coms.gceny}>
+									<Image source={require('^/img/icon/money.png')} style={[cs.icon]}/>
+									<Text style={cs.title}>分期方案</Text>
+								</View>
+								
 								<View style={[coms.gceny]}>
 									<Text style={cs.name}>{_this.planText || '点击选择分期方案'}</Text>
 									<Image source={require('^/img/icon/jian.png')} style={[cs.icon1]}/>
 								</View>
-							</TouchableHighlight>
-						</View>
+							</View>
+						</TouchableHighlight>
 					</View>
 					{/* 订单提交 */}
 					<View style={[coms.gBtnBox,cs.btnBox]}>
@@ -118,7 +127,7 @@ export default class ShangCode extends Component{
 						>下一步</Text>
 					</View>
 					{/* 弹层  方案 */}
-					<ModalBox ref="modalBox" arr={_this.arr}/>
+					{_this.async?<ModalBox ref="modalBox" arr={_this.arr} onCloseFn={(res)=>this.onCloseFn(res)} async={_this.async} planObj={_this.planObj}></ModalBox>:<Text></Text>}
 				</View>
 				<Toast ref="toast" opacity={0.8}/>
 			</View>
