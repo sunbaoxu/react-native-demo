@@ -22,7 +22,8 @@ export default class ShangCode extends Component{
 		this.state = {
 			obj :{},
 			arr :[],
-			planText :''
+			planText :'',
+			planObj:{}
 		}
 	}
 
@@ -40,6 +41,7 @@ export default class ShangCode extends Component{
 		//获取商品方案
 		this.queriesProgramListNew();
 	}
+
 /** 获取商品方案 */
 	async queriesProgramListNew (){
 		let _this = this.state.obj;
@@ -51,8 +53,12 @@ export default class ShangCode extends Component{
 		let data = await api.queriesProgramListNew(res);
 
 		if(data.respCode === '000'){
+			let obj = await storage.get('lb-bus-play-obj').then(res=>{
+									return res;
+								});
 			this.setState({
-				arr:data.plans
+				arr:data.plans,
+				planObj:obj ?JSON.parse(obj):data.plans[0]
 			});
 		} else{
 			this.refs.toast.show(data.respMesg)
@@ -88,7 +94,7 @@ export default class ShangCode extends Component{
 								underlayColor="transparent"
 								onPress={() =>{
 									//modal  显示
-									this.refs.modalBox.modalAsyncFn(true);
+									this.refs.modalBox.modalAsyncFn(_this.planObj);
 								}}
 							>
 								<View style={[coms.gceny]}>

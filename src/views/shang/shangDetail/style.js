@@ -6,9 +6,8 @@ import {
   let cs = StyleSheet.create(
   {
     listWrap :{
-      backgroundColor:res.themeColor,
+      backgroundColor:res.f0,
       flex:1
-
     },
     listBody :{
       paddingTop:10

@@ -32,7 +32,7 @@ export const res = {
   eee:'#eee',
 
   /** 主题色 **/
-  themeColor: '#f0f0f0',
+  f0: '#f0f0f0',
   // 默认灰色字体颜色
   textGrayColor: '#989898',
   // 默认黑色字体颜色
