@@ -26,11 +26,18 @@ import {
       height:20,
       marginRight:5
     },
+    icon1:{
+      width:14,
+      height:14
+    },
     title :{
       fontSize:16
     },
     name:{
       fontSize:14
+    },
+    name:{
+      color:res.gray
     }
   });
   

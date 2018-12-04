@@ -14,13 +14,15 @@ import coms from '^/cs/coms';
 import storage from '^/js/storage';
 import NavigatorBar from '@/header/headerNav';
 import HeaderBox from '../common/header';
+import ModalBox from '../common/modal';
 
 export default class ShangCode extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
 			obj :{},
-			arr :[]
+			arr :[],
+			planText :''
 		}
 	}
 
@@ -59,7 +61,7 @@ export default class ShangCode extends Component{
 
 
 	render() {
-		let _this = this.state.obj;
+		let _this = this.state;
 		return (
 			<View style={cs.listWrap}>
 				<NavigatorBar title={'商家列表'} navigator={this.props.navigator}/>
@@ -74,7 +76,7 @@ export default class ShangCode extends Component{
 								<Image source={require('^/img/icon/cName.png')} style={[cs.icon]}/>
 								<Text style={cs.title}>商品名称</Text>
 							</View>
-							<Text style={cs.name}>{_this.cName}</Text>
+							<Text style={cs.name}>{_this.obj.cName}</Text>
 						</View>
 						{/* 分期方案 */}
 						<View style={[cs.listBox,coms.gfencen]}>
@@ -82,7 +84,18 @@ export default class ShangCode extends Component{
 								<Image source={require('^/img/icon/money.png')} style={[cs.icon]}/>
 								<Text style={cs.title}>分期方案</Text>
 							</View>
-							<Text style={cs.name}>{_this.cName}</Text>
+							<TouchableHighlight
+								underlayColor="transparent"
+								onPress={() =>{
+									//modal  显示
+									this.refs.modalBox.modalAsyncFn(true);
+								}}
+							>
+								<View style={[coms.gceny]}>
+									<Text style={cs.name}>{_this.planText || '点击选择分期方案'}</Text>
+									<Image source={require('^/img/icon/jian.png')} style={[cs.icon1]}/>
+								</View>
+							</TouchableHighlight>
 						</View>
 					</View>
 					{/* 订单提交 */}
@@ -98,6 +111,8 @@ export default class ShangCode extends Component{
 								}}
 						>下一步</Text>
 					</View>
+					{/* 弹层  方案 */}
+					<ModalBox ref="modalBox" arr={_this.arr}/>
 				</View>
 				<Toast ref="toast" opacity={0.8}/>
 			</View>

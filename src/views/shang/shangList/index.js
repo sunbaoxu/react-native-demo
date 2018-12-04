@@ -85,21 +85,17 @@ export default class ShangCode extends Component{
 										<View style={[cs.listBox,i!==this.state.arr.length-1&& cs.listBorder]} >
 											<View><Text style={cs.listtitle}>{m.cName}</Text></View>
 											<View style={cs.box}>
-												<View style={[cs.box]}>
-													<Text style={cs.qibox}>可选</Text>
-													<Text style={[cs.qibox,cs.nper]}>{
-														m.nperList.map((n,ind) =>{
-															let str = '/';
-															if(ind >= m.nperList.length-1){
-																str='';
-															}
-															return (
-																n+str
-															)
-														})
-													}</Text>
-													<Text style={cs.qibox}>期</Text>
-												</View>
+												<Text style={[cs.qibox,cs.nper]}>可选{
+													m.nperList.map((n,ind) =>{
+														let str = '/';
+														if(ind >= m.nperList.length-1){
+															str='';
+														}
+														return (
+															n+str
+														)
+													})
+												}期</Text>
 												<View style={cs.router}>
 													<Text style={cs.qibox}>最高可借</Text>
 													<Text style={cs.money}>￥{m.money}</Text>

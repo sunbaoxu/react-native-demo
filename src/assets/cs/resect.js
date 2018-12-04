@@ -21,6 +21,8 @@ export const res = {
   white: '#FFF',
   gray: '#999',
   gray6: '#666',
+  gray9: '#999',
+  gray3: '#333',
   drakGray: '#A9A9A9',
   lightGray: '#D3D3D3',
   tomato: '#FF6347',
