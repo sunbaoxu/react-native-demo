@@ -10,7 +10,7 @@ import {
 import cs from './style';
 import coms from '^/cs/coms';
 
-export default class StatusBar extends Component{
+export default class HeaderBox extends Component{
   constructor(props){
     super(props);
 

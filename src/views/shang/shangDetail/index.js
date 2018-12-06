@@ -15,6 +15,7 @@ import storage from '^/js/storage';
 import NavigatorBar from '@/header/headerNav';
 import HeaderBox from '../common/header';
 import ModalBox from '../common/modal';
+import SlideBox from '../common/slider';
 
 export default class ShangCode extends Component{
 	constructor(props) {
@@ -24,7 +25,8 @@ export default class ShangCode extends Component{
 			arr :[],
 			planText :'',
 			planObj:{},
-			async:false
+			async:false,
+			value:0
 		}
 	}
 
@@ -56,11 +58,15 @@ export default class ShangCode extends Component{
 		if(data.respCode === '000'){
 			let obj = await storage.get('lb-bus-play-obj').then(res=>{
 					return res;
-				});
+				}),
+				arr = data.plans.length===1?data.plans[0]:{}
 			this.setState({
 				arr:data.plans,
-				planObj:obj ?JSON.parse(obj):data.plans[0]
+				planObj:obj ?JSON.parse(obj):arr,
+				planText :obj ?JSON.parse(obj).planName:arr.planName
 			});
+
+
 		} else{
 			this.refs.toast.show(data.respMesg)
 		}
@@ -69,7 +75,8 @@ export default class ShangCode extends Component{
 	onCloseFn (obj) {
 		this.setState({
 			planObj:obj,
-			async:false
+			async:false,
+			planText:obj.planName
 		});
 	}
 
@@ -113,6 +120,9 @@ export default class ShangCode extends Component{
 							</View>
 						</TouchableHighlight>
 					</View>
+					{/* 滑块 */}
+					{/* {_this.planText ? <SlideBox /> :<Text />} */}
+					<SlideBox /> 
 					{/* 订单提交 */}
 					<View style={[coms.gBtnBox,cs.btnBox]}>
 						<Text 
@@ -127,7 +137,16 @@ export default class ShangCode extends Component{
 						>下一步</Text>
 					</View>
 					{/* 弹层  方案 */}
-					{_this.async?<ModalBox ref="modalBox" arr={_this.arr} onCloseFn={(res)=>this.onCloseFn(res)} async={_this.async} planObj={_this.planObj}></ModalBox>:<Text></Text>}
+					{_this.async ?
+						<ModalBox 
+							ref="modalBox" 
+							arr={_this.arr} 
+							onCloseFn={(res)=>this.onCloseFn(res)} 
+							async={_this.async} planObj={_this.planObj} 
+						/>
+						:
+						<Text/>
+					}
 				</View>
 				<Toast ref="toast" opacity={0.8}/>
 			</View>

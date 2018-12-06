@@ -11,11 +11,11 @@ import {
 import cs from './style';
 import coms from '^/cs/coms';
 
-export default class StatusBar extends Component{
+export default class ModalBox extends Component{
   constructor(props){
     super(props);
     this.state = {
-      obj :this.props.planObj
+      obj :this.props.planObj.planName?this.props.planObj:this.props.arr[0]
     }
   }
   /**个人还款期数 */

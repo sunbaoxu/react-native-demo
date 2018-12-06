@@ -13,7 +13,8 @@ import {
       paddingTop:10
     },
     listMain :{
-      backgroundColor:res.white
+      backgroundColor:res.white,
+      marginBottom:10
     },
     listBox :{
       height:54,
