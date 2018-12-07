@@ -25,8 +25,9 @@ export default class ShangCode extends Component{
 			arr :[],
 			planText :'',
 			planObj:{},
-			async:false,
-			moneyValNum:0
+			async:false,//是否显示滑块
+			moneyValNum:0,//默认金额
+			moneyAsync:false,//默认金额是否变更
 		}
 	}
 
@@ -71,14 +72,23 @@ export default class ShangCode extends Component{
 		}
 	}
 	/**关闭 方案遮罩 */
-	onCloseFn (obj) {
-		this.setState({
-			planObj:obj,
-			async:false,
-			planText:obj.planName,
-			moneyValNum :obj.money
-		});
+	onCloseFn (obj,async) {
+		if(async){
+			this.setState({
+				planObj:obj,
+				async:false,
+				planText:obj.planName,
+				moneyValNum :obj.money,
+				moneyAsync :true
+			});
+		} else{
+			this.setState({
+				async:false,
+				moneyAsync: false
+			});
+		}
 	}
+
 
 	render() {
 		let _this = this.state;
@@ -121,7 +131,19 @@ export default class ShangCode extends Component{
 						</TouchableHighlight>
 					</View>
 					{/* 滑块 */}
-					{_this.planText ? <SlideBox obj={_this.planObj} moneyValNum={_this.moneyValNum}/> :<Text />}
+					{_this.planText 
+						? 
+						<SlideBox 
+							obj={_this.planObj} 
+							moneyValNum={_this.moneyValNum}
+							setValueNameFn = {(res)=>{
+								this.setState({...res})
+							}}
+							moneyAsync = {_this.moneyAsync}
+						/> 
+						:
+						<Text />
+					}
 					{/* <SlideBox />  */}
 					{/* 订单提交 */}
 					<View style={[coms.gBtnBox,cs.btnBox]}>
@@ -141,7 +163,7 @@ export default class ShangCode extends Component{
 						<ModalBox 
 							ref="modalBox" 
 							arr={_this.arr} 
-							onCloseFn={(res)=>this.onCloseFn(res)} 
+							onCloseFn={(res,async)=>this.onCloseFn(res,async)} 
 							async={_this.async} planObj={_this.planObj} 
 						/>
 						:

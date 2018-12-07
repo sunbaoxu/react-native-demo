@@ -43,13 +43,13 @@ export default class ModalBox extends Component{
       animationType="slide"
       transparent={true}
       onRequestClose={() => { 
-        this.props.onCloseFn(obj)
+        this.props.onCloseFn(this.props.planObj,false)
       }}
       visible ={this.props.async}>
       {/* 半透明 */}
       <Text style={cs.flex}
         onPress={() =>{
-          this.props.onCloseFn(this.props.planObj)
+          this.props.onCloseFn(this.props.planObj,false)
       }}></Text>
       {/* 主要内容 */}
       <View style={cs.main}>
@@ -124,7 +124,7 @@ export default class ModalBox extends Component{
       <Text
         style={cs.btnbox} 
         onPress={() =>{
-          this.props.onCloseFn(obj)
+          this.props.onCloseFn(obj,true)
         }}>确定</Text>
 			</Modal>
 		)
