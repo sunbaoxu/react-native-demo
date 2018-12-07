@@ -76,7 +76,7 @@ export default class ShangCode extends Component{
 												remark:_this.remark,
 												orgImgPath:_this.orgImgPath,
 												orgAddrDetailed:_this.orgAddrDetailed
-										});
+											});
 											this.props.navigator.push({
 												component:ShangDetail
 											});

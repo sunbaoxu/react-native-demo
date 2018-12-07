@@ -16,6 +16,7 @@ import NavigatorBar from '@/header/headerNav';
 import HeaderBox from '../common/header';
 import ModalBox from '../common/modal';
 import SlideBox from '../common/slider';
+import User from '~/user/user';
 
 export default class ShangCode extends Component{
 	constructor(props) {
@@ -42,11 +43,11 @@ export default class ShangCode extends Component{
 			return res;
 		});
 		this.setState({obj});
-		//获取商品方案
+		//根据方案查低高额还款期
 		this.queriesProgramListNew();
 	}
 
-/** 获取商品方案 */
+/** 根据方案查低高额还款期 */
 	async queriesProgramListNew (){
 		let _this = this.state.obj;
 		let res = await Gfn.dataFn({
@@ -71,7 +72,31 @@ export default class ShangCode extends Component{
 			this.refs.toast.show(data.respMesg)
 		}
 	}
-	/**关闭 方案遮罩 */
+/** 基本信息认证 */
+async queryAuthInfo (){
+	let res = await Gfn.dataFn({
+		source : 'loan'
+	});
+	
+	let data = await api.queryAuthInfo(res);
+	//校验信息是否完全
+	if(data.isPerfect){
+		if(data.isblack){
+			Toast('很抱歉，您未能通过平台的信用评估(411)');
+		}else{
+			//学贷检查是否可以下单
+			// this.loanCheckInstall();
+		}
+	} else{
+		// Object.assign(this.planObj,{moneyValNum:this.moneyValNum,});
+		// storage.set('labi-bus-obj',{});
+		//跳转到我的资料页
+		this.props.navigator.push({
+				component:User
+		});
+	}
+}
+/**关闭 方案遮罩 */
 	onCloseFn (obj,async) {
 		if(async){
 			this.setState({
@@ -94,7 +119,7 @@ export default class ShangCode extends Component{
 		let _this = this.state;
 		return (
 			<View style={cs.listWrap}>
-				<NavigatorBar title={'商家列表'} navigator={this.props.navigator}/>
+				<NavigatorBar title={'商品详情'} navigator={this.props.navigator}/>
 				<View View style={[cs.listBody]}>
 					{/* 商家头部 */}
 					<HeaderBox  obj={this.state.obj} />
@@ -136,11 +161,11 @@ export default class ShangCode extends Component{
 						<SlideBox 
 							obj={_this.planObj} 
 							moneyValNum={_this.moneyValNum}
-							setValueNameFn = {(res)=>{
-								this.setState({...res})
-							}}
+							setValueNameFn = {(res)=>{this.setState({...res})}}
 							moneyAsync = {_this.moneyAsync}
-						/> 
+						> 
+						<Image source={require('^/img/icon/xiugai.png')} style={cs.icon2}/>
+						</SlideBox>
 						:
 						<Text />
 					}
@@ -148,13 +173,10 @@ export default class ShangCode extends Component{
 					{/* 订单提交 */}
 					<View style={[coms.gBtnBox,cs.btnBox]}>
 						<Text 
-								style={[coms.gBtnBoxButton,(this.state.code ?coms.gBtnBoxButtonOn:{})]}
+								style={[coms.gBtnBoxButton,(_this.planObj.planName ?coms.gBtnBoxButtonOn:{})]}
 								onPress={()=>{
-										// if(!this.state.code){
-										// 		return false
-										// } else{
-										// 		// this.queryBusinessInfoAndProgram()
-										// }
+									//基本信息认证
+									this.queryAuthInfo();
 								}}
 						>下一步</Text>
 					</View>

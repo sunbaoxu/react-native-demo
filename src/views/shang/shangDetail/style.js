@@ -30,6 +30,11 @@ import {
       width:14,
       height:14
     },
+    icon2 :{
+      width:24,
+      height:24,
+      marginLeft:4
+    },
     title :{
       fontSize:16
     },

@@ -6,8 +6,9 @@
 //商家列表
 // import ShangCode from '~/shang/shangList';
 //商家详情
-import ShangCode from '~/shang/shangDetail';
-// import ShangCode from '~/shang/shangCode';
+// import ShangCode from '~/shang/shangDetail';
+//我的资料
+import ShangCode from '~/user/user';
 // import ShangCode from '~/shang/shangCode';
 // import ShangCode from '~/shang/shangCode';
 // import ShangCode from '~/shang/shangCode';

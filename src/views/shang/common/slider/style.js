@@ -17,11 +17,6 @@ let cs = StyleSheet.create(
     fontSize:16,
     // lineHeight:54
   },
-  icon :{
-    width:24,
-    height:24,
-    marginLeft:4
-  },
   slider :{
     height:20
   },

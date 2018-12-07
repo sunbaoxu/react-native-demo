@@ -27,7 +27,9 @@ export default class SlideBox extends Component{
           <Text style={cs.title}>分期金额(元)</Text>
           <View style={coms.gceny}>
             <Text>{this.props.moneyAsync ?obj.money: _this.val}</Text>
-            <Image source={require('^/img/icon/xiugai.png')} style={cs.icon}/>
+            {
+              this.props.children
+            }
           </View>
         </View>
         <View>
@@ -54,6 +56,7 @@ export default class SlideBox extends Component{
             <Text style={{color:'#999',fontSize:15}}>{obj.money}</Text>
           </View>
         </View>
+        
       </View>
 		)
 	}
