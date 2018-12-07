@@ -13,8 +13,9 @@ import cs from './style';
 import coms from '^/cs/coms';
 import * as api from './api';
 import NavigatorBar from '@/header/headerNav';
+import TipsTop from '@/tips/tipsTop';
 import storage from '^/js/storage';
-import ShangCode from '~/shang/shangCode';
+import ListBox from '../common/list';
 
 
 export default class User extends Component{
@@ -27,10 +28,16 @@ export default class User extends Component{
 
 	render() {
 		return (
-			<View>	
+			<View style={{flex:1}}>	
 				<NavigatorBar title={'我的资料'} navigator={this.props.navigator}/>
-				<Text>SFDA</Text>
-				
+				<TipsTop str='您填写的个人信息将做加密处理，请放心认证！'/>
+				<View>
+					<Text>基本信息（必填）</Text>
+					<View style={cs.listbox}>
+						<ListBox ></ListBox>
+					</View>
+				</View>
+
 			</View>
 		)
 	}
