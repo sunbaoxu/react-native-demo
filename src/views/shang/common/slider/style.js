@@ -6,12 +6,12 @@ import {res} from '^/cs/resect';
 let cs = StyleSheet.create(
 {
   slidebox :{
-    backgroundColor:res.white
+    backgroundColor:res.white,
+    paddingLeft:15,
+    paddingRight:15
   },
   header :{
     height:54,
-    paddingLeft:15,
-    paddingRight:15
   },
   title :{
     fontSize:16,
@@ -21,6 +21,12 @@ let cs = StyleSheet.create(
     width:24,
     height:24,
     marginLeft:4
+  },
+  slider :{
+    height:20
+  },
+  money :{
+    height:40
   }
 });
 

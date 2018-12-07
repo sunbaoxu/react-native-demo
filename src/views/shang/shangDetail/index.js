@@ -26,7 +26,7 @@ export default class ShangCode extends Component{
 			planText :'',
 			planObj:{},
 			async:false,
-			value:0
+			moneyValNum:0
 		}
 	}
 
@@ -63,10 +63,9 @@ export default class ShangCode extends Component{
 			this.setState({
 				arr:data.plans,
 				planObj:obj ?JSON.parse(obj):arr,
-				planText :obj ?JSON.parse(obj).planName:arr.planName
+				planText :obj ?JSON.parse(obj).planName:arr.planName,
+				moneyValNum:obj ?JSON.parse(obj).moneyValNum:arr.money,
 			});
-
-
 		} else{
 			this.refs.toast.show(data.respMesg)
 		}
@@ -76,7 +75,8 @@ export default class ShangCode extends Component{
 		this.setState({
 			planObj:obj,
 			async:false,
-			planText:obj.planName
+			planText:obj.planName,
+			moneyValNum :obj.money
 		});
 	}
 
@@ -121,8 +121,8 @@ export default class ShangCode extends Component{
 						</TouchableHighlight>
 					</View>
 					{/* 滑块 */}
-					{/* {_this.planText ? <SlideBox /> :<Text />} */}
-					<SlideBox /> 
+					{_this.planText ? <SlideBox obj={_this.planObj} moneyValNum={_this.moneyValNum}/> :<Text />}
+					{/* <SlideBox />  */}
 					{/* 订单提交 */}
 					<View style={[coms.gBtnBox,cs.btnBox]}>
 						<Text 
