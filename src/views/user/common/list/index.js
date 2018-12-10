@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
-    Image
+		Image,
+		TouchableHighlight
 } from 'react-native';
 import Toast from 'react-native-easy-toast';
 
@@ -21,16 +22,27 @@ export default class TipsTop extends Component{
 
 	render() {
 		return (
-			<View style={coms.geny}>
-				<View style={coms.geny}>
-					<Image source={require('^/img/icon/tips.png')} style={cs.icon}/>
-					<Text>实名认证</Text>
+			<TouchableHighlight 
+				underlayColor="transparent" 
+				// style={cs.close}
+				onPress={() =>{
+					
+					// this.props.navigator.push({
+					// 	component:ShangDetail
+					// });
+				}}
+			>
+				<View style={[coms.gceny,cs.box,coms.gborder]}>
+					<View style={[coms.gceny,cs.lef]}>
+						<Image source={require('^/img/icon/tips.png')} style={cs.icon}/>
+						<Text>实名认证</Text>
+					</View>
+					<View style={[coms.gceny,cs.rig]}>
+						<Text>未认证</Text>
+						<Image source={require('^/img/icon/jian.png')} style={cs.jiao}/>
+					</View>
 				</View>
-				<View style={coms.geny}>
-					<Text>未认证</Text>
-					<Image source={require('^/img/icon/jian.png')} style={cs.icon}/>
-				</View>
-			</View>
+			</TouchableHighlight>
 		)
 	}
 }

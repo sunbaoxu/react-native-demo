@@ -28,16 +28,39 @@ export default class User extends Component{
 
 	render() {
 		return (
-			<View style={{flex:1}}>	
+			<View style={cs.userwarp}>	
 				<NavigatorBar title={'我的资料'} navigator={this.props.navigator}/>
 				<TipsTop str='您填写的个人信息将做加密处理，请放心认证！'/>
+				<ScrollView>
 				<View>
-					<Text>基本信息（必填）</Text>
-					<View style={cs.listbox}>
-						<ListBox ></ListBox>
+						<Text style={[cs.title]}>基本信息（必填）</Text>
+						<View style={cs.listbox}>
+							<ListBox 
+							
+							></ListBox>
+							<ListBox 
+							
+							></ListBox>
+							<ListBox 
+							
+							></ListBox>
+							<ListBox 
+							
+							></ListBox>
+							<ListBox 
+							
+							></ListBox>
+						</View>
 					</View>
-				</View>
-
+					<View>
+						<Text style={[cs.title]}>授权认证（必填）</Text>
+						<View style={cs.listbox}>
+							<ListBox 
+							
+							></ListBox>
+						</View>
+					</View>
+				</ScrollView>
 			</View>
 		)
 	}
