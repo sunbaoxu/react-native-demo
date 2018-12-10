@@ -87,8 +87,8 @@ export default class RealName extends Component {
 								this.selectPhotoTapped('just')
 							}}
 						>
-							<View style={[cs.imgBox,{position:'relative'}]}>
-								<Image style={cs.imgBox} source={this.state.justImg} />
+							<View style={[cs.imgBox,{position:'relative'},coms.gcencen]}>
+								<Image style={cs.img} source={this.state.justImg} />
 								<Text style={cs.text}>点击上传身份证人像面照片</Text>
 							</View>
 						</TouchableOpacity>
@@ -97,8 +97,8 @@ export default class RealName extends Component {
 						<TouchableOpacity onPress={()=>{
 							this.selectPhotoTapped('back')
 						}}>
-							<View style={[cs.imgBox,{position:'relative'}]}>
-								<Image style={cs.imgBox} source={this.state.backImg} />
+							<View style={[cs.imgBox,{position:'relative'},coms.gcencen]}>
+								<Image style={cs.img} source={this.state.backImg} />
 								<Text style={cs.text}>点击上传身份证国徽照片</Text>
 							</View>
 						</TouchableOpacity>

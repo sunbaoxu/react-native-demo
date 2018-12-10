@@ -13,7 +13,18 @@ import {
     },
     imgBox :{
       height:210,
-      width:315
+      width:315,
+      overflow:'hidden',
+      borderRadius:8,
+      borderColor:res.eee,
+      borderWidth:1,
+      borderStyle:'solid',
+      
+    },
+    img :{
+      borderRadius:5,
+      height:190,
+      width:295,
     },
     text:{
       position:'absolute',
