@@ -119,7 +119,7 @@ async queryAuthInfo (){
 		let _this = this.state;
 		return (
 			<View style={cs.listWrap}>
-				<NavigatorBar title={'商品详情'} navigator={this.props.navigator}/>
+				<NavigatorBar title='商品详情' navigator={this.props.navigator}/>
 				<View View style={[cs.listBody]}>
 					{/* 商家头部 */}
 					<HeaderBox  obj={this.state.obj} />

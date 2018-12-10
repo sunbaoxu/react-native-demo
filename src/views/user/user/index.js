@@ -29,7 +29,7 @@ export default class User extends Component{
 	render() {
 		return (
 			<View style={cs.userwarp}>	
-				<NavigatorBar title={'我的资料'} navigator={this.props.navigator}/>
+				<NavigatorBar title='我的资料' navigator={this.props.navigator}/>
 				<TipsTop str='您填写的个人信息将做加密处理，请放心认证！'/>
 				<ScrollView>
 				<View>

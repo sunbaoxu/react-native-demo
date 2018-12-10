@@ -53,7 +53,7 @@ export default class ShangCode extends Component{
 		let _this =this.state.obj;
 		return (
 			<View style={cs.listWrap}>
-				<NavigatorBar title={'商家列表'} navigator={this.props.navigator}/>
+				<NavigatorBar title='商家列表' navigator={this.props.navigator}/>
 				<View View style={[cs.listBody]}>
 					{/* 商家头部 */}
 					<HeaderBox  obj={_this} />

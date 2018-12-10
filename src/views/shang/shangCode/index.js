@@ -47,7 +47,7 @@ export default class ShangCode extends Component{
 	render() {
 		return (
 			<View style={cs.codeWrap}>
-				<NavigatorBar title={'商家推荐码'} navigator={this.props.navigator}/>
+				<NavigatorBar title='商家推荐码' navigator={this.props.navigator}/>
 				<View View style={cs.codeMain}>
 					<View style={{'flexDirection':'row',"backgroundColor":'green'}}>
 						<TextInput
