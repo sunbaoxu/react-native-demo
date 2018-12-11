@@ -125,12 +125,18 @@ export default class RealName extends Component {
 		)
 	}
 
+	componentDidMount (){
+		this.props.navigatorFn({
+			navigator:this.props.navigator,
+			title:'实名认证'
+		});
+	}
+
 
 	render() {
 		let _this = this.state;
 		return (
 			<View style={cs.realwrap}>
-				<NavigatorBar title='实名认证' navigator={this.props.navigator}/>
 				<TipsTop str='请务必按照需求上传本人身份证照片，不支持临时身份证'/>
 				<ScrollView>
 					<View style={{paddingTop:26,paddingBottom:30}}>

@@ -24,12 +24,11 @@ export default class TipsTop extends Component{
 		return (
 			<TouchableHighlight 
 				underlayColor="transparent" 
-				// style={cs.close}
 				onPress={() =>{
 					
-					// this.props.navigator.push({
-					// 	component:RealName
-					// });
+					this.props.navigator.push({
+						component:RealName
+					});
 				}}
 			>
 				<View style={[coms.gceny,cs.box,coms.gborder]}>

@@ -44,7 +44,7 @@ export default class ShangCode extends Component{
 				obj :data
 			});
 		} else{
-			this.refs.toast.show(data.respMesg)
+			this.props.toastFn(data.respMesg)
 		}
 	}
 

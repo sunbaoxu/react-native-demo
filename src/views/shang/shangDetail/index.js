@@ -6,13 +6,11 @@ import {
 		TouchableHighlight
 } from 'react-native';
 import Gfn from '^/js/globalFn';
-import Toast from 'react-native-easy-toast';
 
 import cs from './style';
 import * as api from './api';
 import coms from '^/cs/coms';
 import storage from '^/js/storage';
-import NavigatorBar from '@/header/headerNav';
 import HeaderBox from '../common/header';
 import ModalBox from '../common/modal';
 import SlideBox from '../common/slider';
@@ -69,7 +67,7 @@ export default class ShangCode extends Component{
 				moneyValNum:obj ?JSON.parse(obj).moneyValNum:arr.money,
 			});
 		} else{
-			this.refs.toast.show(data.respMesg)
+			this.props.toastFn(data.respMesg)
 		}
 	}
 /** 基本信息认证 */
@@ -82,7 +80,7 @@ async queryAuthInfo (){
 	//校验信息是否完全
 	if(data.isPerfect){
 		if(data.isblack){
-			Toast('很抱歉，您未能通过平台的信用评估(411)');
+			this.props.toastFn('很抱歉，您未能通过平台的信用评估(411)');
 		}else{
 			//学贷检查是否可以下单
 			// this.loanCheckInstall();
@@ -114,12 +112,17 @@ async queryAuthInfo (){
 		}
 	}
 
+	componentDidMount (){
+		this.props.navigatorFn({
+			navigator:this.props.navigator,
+			title:'商品详情'
+		});
+	}
 
 	render() {
 		let _this = this.state;
 		return (
 			<View style={cs.listWrap}>
-				<NavigatorBar title='商品详情' navigator={this.props.navigator}/>
 				<View View style={[cs.listBody]}>
 					{/* 商家头部 */}
 					<HeaderBox  obj={this.state.obj} />
@@ -192,7 +195,6 @@ async queryAuthInfo (){
 						<Text/>
 					}
 				</View>
-				<Toast ref="toast" opacity={0.8}/>
 			</View>
 		)
 	}
