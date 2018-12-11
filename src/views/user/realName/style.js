@@ -13,7 +13,7 @@ import {
       height:210,
       width:315,
       borderRadius:8,
-      borderColor:res.eee,
+      borderColor:res.e,
       borderWidth:1,
       borderStyle:'solid',
       
@@ -28,8 +28,7 @@ import {
       height:30,
       position:'absolute',
       top:-14,
-      right:-14,
-      // backgroundColor:'red'
+      right:-14
     },
     icon :{
       width:30,
@@ -42,6 +41,44 @@ import {
       textAlign:'center',
       fontSize:15,  
       color:res.gray3
+    },
+    mtitle :{
+      lineHeight:50,
+      textAlign:'center',
+      fontSize:18,
+      color:res.gray3
+    },
+    mbtn :{
+      height:50,
+      flex:1,
+      textAlign:'center',
+      lineHeight:50,
+      fontSize:12,
+      color:res.gray6
+    },
+    mbtnon:{
+      color:res.blue
+    },
+    xian:{
+      height:30,
+      width:1,
+      backgroundColor:res.c
+    },
+    mtext :{
+      fontSize:14,
+      textAlign:'center',
+      paddingBottom:15
+    },
+    mlist :{
+      flexDirection:'row',
+      height:40,
+      alignItems:'center'
+    },
+    minput :{
+      textAlign:'right',
+      flex:1,
+      fontSize:12,
+      color:res.gray6
     }
   });
   

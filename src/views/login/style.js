@@ -11,7 +11,7 @@ import {
       paddingBottom:50
     },
     imgBox :{
-      shadowColor:res.eee,
+      shadowColor:res.e,
       shadowOffset:{height:4,width:2},
       shadowRadius:2,
       shadowOpacity:1,
@@ -37,7 +37,7 @@ import {
     },
     listBox : {
       height:50,
-      borderBottomColor:res.ccc,
+      borderBottomColor:res.c,
       borderBottomWidth:1,
       borderStyle:'solid',
       justifyContent:'center'

@@ -28,8 +28,8 @@ export const res = {
   tomato: '#FF6347',
   PeachPuff: '#FFDAB9',
   clear: 'transparent',
-  ccc:'#ccc',
-  eee:'#eee',
+  c:'#ccc',
+  e:'#eee',
 
   /** 主题色 **/
   f0: '#f0f0f0',

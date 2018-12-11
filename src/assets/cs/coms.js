@@ -13,7 +13,7 @@ let comcs = StyleSheet.create(
 	gBtnBoxButton :{
 		fontSize:17,
 		height:50,
-		backgroundColor:res.ccc, 
+		backgroundColor:res.c, 
 		borderRadius:25,
 		color:res.white,
 		overflow:'hidden',
@@ -21,7 +21,7 @@ let comcs = StyleSheet.create(
 		lineHeight:50
 	},
 	gBtnBoxButtonOn :{
-			backgroundColor:res.blue
+		backgroundColor:res.blue
 	},
 	gceny :{
 		flexDirection:'row',
@@ -38,9 +38,9 @@ let comcs = StyleSheet.create(
 		justifyContent:'space-between'
 	},
 	gborder:{
-		borderColor:res.eee,
+		borderColor:res.e,
 		borderBottomWidth:1,
-		borderStyle:'solid',
+		borderStyle:'solid'
 	},
 	gTextOver :{
 			// overflow: 'hidden',

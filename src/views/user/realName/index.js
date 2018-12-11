@@ -6,7 +6,9 @@ import {
   View,
 	TouchableOpacity,
 	Image,
-	ScrollView
+	ScrollView,
+	Modal,
+	TextInput
 } from 'react-native';
 import cs from './style'
 import coms from '^/cs/coms';
@@ -21,11 +23,13 @@ export default class RealName extends Component {
 		super(props);
 		this.state = {
 			justImg: '',
-			backImg: ''
+			backImg: '',
+			async:false,
+			obj:{}
 		}
 	}
 
-	/** 根据方案查低高额还款期 */
+	/** 上传图片 */
 	async upload (){
 		let arr=[this.state.justImg,this.state.backImg];
 		let res = await Gfn.dataFn({
@@ -37,8 +41,11 @@ export default class RealName extends Component {
 			this.props.toast(data.message)
 		} else{
 			console.log(data,res)
+			this.setState({
+				async:true,
+				obj:data.data
+			})
 		}
-		
 	}
 
 
@@ -93,7 +100,6 @@ export default class RealName extends Component {
 			}
 		});
 	}
-//this.urlArr.push({file:str,fileType:this.type == 'just' ? '10005' : '10006',fileName:name});
 	//listBox  模块
 	listBoxFn (name) {
 		let _this = this.state,
@@ -158,6 +164,66 @@ export default class RealName extends Component {
 						>下一步</Text>
 					</View>
 				</ScrollView>
+				<Modal
+					style={{justifyContent:'flex-end'}}
+					animationType="slide"
+					transparent={true}
+					onRequestClose={() => { 
+						this.setState({async:false})
+					}}
+					visible ={this.state.async}>
+						{/* 半透明 */}
+						<Text style={{backgroundColor:'rgba(0,0,0,0.4)',flex:1}}
+							onPress={() =>{
+								this.setState({async:false})
+						}} />
+						{/* 主要内容 */}
+						<View style={{backgroundColor:'#fff'}}>
+							
+							<View style={coms.gborder}>
+								<Text style={[cs.mtitle]}>信息核实</Text>
+							</View>
+							<View style={{padding:15}}>
+								<Text style={cs.mtext}>请核对您的姓名和身份证信息是否正确！</Text>
+								<View style={[coms.gborder,cs.mlist]}>
+									<Text style={{fontSize:14}}>姓名</Text>
+									{/* <Text style={{textAlign:'right',flex:1}}>{_this.obj.idName}</Text> */}
+									<TextInput
+										placeholder="请输入姓名"
+										placeholderTextColor ="#999"
+										underlineColorAndroid="transparent"
+										style={cs.minput}
+										keyboardType="numeric"
+										maxLength={11}
+										onChangeText={
+											(res) => {
+												this.setState({
+													// obj['idName']:res
+												})
+											}
+										}
+										value={this.state.phone} />
+								</View>
+								<View style={[coms.gborder,cs.mlist]}>
+									<Text style={{fontSize:14}}>身份证号</Text>
+									<Text style={cs.minput}>{_this.obj.idNum}</Text>
+								</View>
+							</View>
+							<View style={{flexDirection:'row',alignItems:'center'}}>
+								<Text
+									style={cs.mbtn} 
+									onPress={() =>{
+										this.setState({async:false})
+									}}>重新上传</Text>
+								<Text style={cs.xian} />
+								<Text
+								style={[cs.mbtn,cs.mbtnon]} 
+								onPress={() =>{
+									// this.props.onCloseFn(obj,true)
+								}}>确认无误</Text>
+							</View>
+						</View>
+					</Modal>
 			</View>
 		);
 	}
