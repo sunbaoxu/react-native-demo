@@ -6,7 +6,8 @@ import {
   
   let cs = StyleSheet.create({
     realwrap :{
-
+      flex:1,
+      paddingBottom:20
     },
     listbox :{
       alignItems:'center'
@@ -14,7 +15,6 @@ import {
     imgBox :{
       height:210,
       width:315,
-      overflow:'hidden',
       borderRadius:8,
       borderColor:res.eee,
       borderWidth:1,
@@ -25,6 +25,18 @@ import {
       borderRadius:5,
       height:190,
       width:295,
+    },
+    iconbox :{
+      width:30,
+      height:30,
+      position:'absolute',
+      top:-14,
+      right:-14,
+      // backgroundColor:'red'
+    },
+    icon :{
+      width:30,
+      height:30
     },
     text:{
       position:'absolute',

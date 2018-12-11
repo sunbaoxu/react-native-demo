@@ -16,7 +16,8 @@ let cs = StyleSheet.create(
     marginRight:5
   },
   text :{
-    fontSize:12
+    fontSize:12,
+    color:res.gray3
   }
 });
 

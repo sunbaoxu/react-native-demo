@@ -10,7 +10,7 @@ import Toast from 'react-native-easy-toast';
 
 import cs from './style';
 import coms from '^/cs/coms';
-
+import RealName from '~/user/realName';
 
 export default class TipsTop extends Component{
 	constructor(props) {
@@ -28,7 +28,7 @@ export default class TipsTop extends Component{
 				onPress={() =>{
 					
 					// this.props.navigator.push({
-					// 	component:ShangDetail
+					// 	component:RealName
 					// });
 				}}
 			>

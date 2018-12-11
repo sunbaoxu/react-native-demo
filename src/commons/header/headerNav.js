@@ -31,10 +31,6 @@ export default class NavigatorBar extends Component{
         super(props);
     }
 
-    onBack(){
-        this.props.navigator.pop();
-    }
-
 
    render(){
         //状态栏
@@ -47,7 +43,7 @@ export default class NavigatorBar extends Component{
                         underlayColor="transparent" 
                         style={cs.close}
                         onPress={() =>{
-                            this.onBack()
+                            this.props.navigator.pop();
                         }
                     }>
                         {/*tintColor可以为图表着色*/}

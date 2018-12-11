@@ -9,7 +9,7 @@ export const res = {
 
   /** color **/
   // 常用颜色
-  red: '#FF0000',
+  red: '#f05b5a',
   orange: '#FFA500',
   yellow: '#f8f6b8',
   green: '#00FF00',
