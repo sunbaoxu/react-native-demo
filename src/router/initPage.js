@@ -2,9 +2,9 @@
 //登陆
 // import ShangCode from '~/login';
 // 商家推荐码
-import ShangCode from '~/shang/shangCode';
+// import ShangCode from '~/shang/shangCode';
 //商家列表
-// import ShangCode from '~/shang/shangList';
+import ShangCode from '~/shang/shangList';
 //商家详情
 // import ShangCode from '~/shang/shangDetail';
 //我的资料

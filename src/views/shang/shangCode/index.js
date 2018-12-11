@@ -36,7 +36,7 @@ export default class ShangCode extends Component{
 				}
 			});
 		} else{
-			this.props.toast(data.respMesg)
+			this.props.toastFn(data.respMesg)
 		}
 	}
 

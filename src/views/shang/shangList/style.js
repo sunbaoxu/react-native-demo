@@ -8,40 +8,31 @@ import {
     listWrap :{
       backgroundColor:res.f0,
       flex:1
-
     },
     listBody :{
-      paddingTop:10
+      paddingTop:10,
+      flex:1
     },
     listMain :{
-      backgroundColor:res.white
+      backgroundColor:res.white,
+      flex:1
     },
     listBox :{
       height:64,
       paddingLeft:15,
       paddingRight:15,
-      justifyContent:'center'
-    },
-    listBorder:{
-      borderColor:res.eee,
-      borderBottomWidth:1,
-      borderStyle:'solid'
+      justifyContent:'center',
+      width:'100%'
     },
     listtitle :{
       fontSize:12,
       width:200,
       paddingBottom:8
     },
-    box:{
-      flexDirection:'row'
-    },
     qibox :{
       color:res.gray,
       fontSize:11,
       lineHeight:12
-    },
-    nper :{
-      paddingTop:1
     },
     money :{
       color:res.blue,
@@ -55,7 +46,7 @@ import {
     icon :{
       width:14,
       height:14
-    },
+    }
   });
   
   module.exports = cs;
