@@ -9,9 +9,6 @@ import {
       flex:1,
       paddingBottom:20
     },
-    listbox :{
-      alignItems:'center'
-    },
     imgBox :{
       height:210,
       width:315,

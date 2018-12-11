@@ -7,47 +7,51 @@ import {
     TouchableHighlight
 } from 'react-native';
 import Gfn from '^/js/globalFn';
-import Toast from 'react-native-easy-toast';
 
 import cs from './style';
 import coms from '^/cs/coms';
 import * as api from './api';
-import NavigatorBar from '@/header/headerNav';
 import ShangList from '~/shang/shangList';
 
 export default class ShangCode extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            code:''
-        }
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			code:''
+		}
+	}
 /** 根据code获取商家信息 */
-    async queryBusinessInfoAndProgram (){
-        let res = await Gfn.dataFn({
-            QRcode:this.state.code
-        });
-        
-        let data = await api.queryBusinessInfoAndProgram(res);
+	async queryBusinessInfoAndProgram (){
+		let res = await Gfn.dataFn({
+			QRcode:this.state.code
+		});
+		
+		let data = await api.queryBusinessInfoAndProgram(res);
 
-        if(data.respCode === '000'){
-            this.props.navigator.push({
-                component:ShangList,
-                params:{
-                    code:data.recoCode
-                }
-            });
-        } else{
-            this.refs.toast.show(data.respMesg)
-        }
-    }
+		if(data.respCode === '000'){
+			this.props.navigator.push({
+				component:ShangList,
+				params:{
+						code:data.recoCode
+				}
+			});
+		} else{
+			this.props.toast(data.respMesg)
+		}
+	}
+
+	componentDidMount (){
+		this.props.navigatorFn({
+			navigator:this.props.navigator,
+			title:'商家推荐码'
+		});
+	}
 
 
 
 	render() {
 		return (
 			<View style={cs.codeWrap}>
-				<NavigatorBar title='商家推荐码' navigator={this.props.navigator}/>
 				<View View style={cs.codeMain}>
 					<View style={{'flexDirection':'row',"backgroundColor":'green'}}>
 						<TextInput
@@ -58,7 +62,7 @@ export default class ShangCode extends Component{
 						maxLength={11}
 						onChangeText={
 							(code) => {
-									this.setState({code})
+								this.setState({code})
 							}
 						}
 						value={this.state.code} />
@@ -89,8 +93,6 @@ export default class ShangCode extends Component{
 						>下一步</Text>
 					</View>
 				</View>
-
-				<Toast ref="toast" opacity={0.8}/>
 			</View>
 		)
 	}

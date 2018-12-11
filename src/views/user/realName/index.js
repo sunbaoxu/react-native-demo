@@ -11,6 +11,7 @@ import {
 import cs from './style'
 import coms from '^/cs/coms';
 import * as api from './api';
+import Gfn from '^/js/globalFn';
 import NavigatorBar from '@/header/headerNav';
 import TipsTop from '@/tips/tipsTop';
 
@@ -24,11 +25,27 @@ export default class RealName extends Component {
 		}
 	}
 
+	/** 根据方案查低高额还款期 */
+	async upload (){
+		let arr=[this.state.justImg,this.state.backImg];
+		let res = await Gfn.dataFn({
+			list :arr
+		});
+		
+		let data = await api.upload(res);
+		if(data.code === -1){
+			this.props.toast(data.message)
+		} else{
+			console.log(data,res)
+		}
+		
+	}
+
 
 	//选择图片
 	selectPhotoTapped(name) {
 		const options = {
-			title: '选择图片', 
+			title: '', 
 			cancelButtonTitle: '取消',
 			takePhotoButtonTitle: '拍照', 
 			chooseFromLibraryButtonTitle: '选择照片', 
@@ -39,8 +56,8 @@ export default class RealName extends Component {
 			mediaType: 'photo',
 			videoQuality: 'high', 
 			durationLimit: 10, 
-			maxWidth: 300,
-			maxHeight: 300,
+			maxWidth: 295,
+			maxHeight: 190,
 			quality: 0.8, 
 			angle: 0,
 			allowsEditing: false, 
@@ -51,8 +68,6 @@ export default class RealName extends Component {
 		};
 
 		ImagePicker.showImagePicker(options, (response) => {
-			// console.log('Response = ', response);
-
 			if (response.didCancel) {
 				console.log('User cancelled photo picker');
 			}
@@ -61,39 +76,45 @@ export default class RealName extends Component {
 			}
 			else if (response.customButton) {
 				console.log('User tapped custom button: ', response.customButton);
-			}
+			}else if (response.fileSize /1024 >= 500) { 
+				//1048576 = 1024 * 1024
+				this.refs.toast.show('图片太大，请选择一张更小的图');
+      }
 			else {
-				let source = { uri: response.uri };
-
-				// You can also display the image using data:
-				// let source = { uri: 'data:image/jpeg;base64,' + response.data };
-
+				let source = { 
+					uri: response.uri,
+					fileName:response.fileName,
+					fileType : name === 'just' ?'10005':'10006',
+					file:'data:image/png;base64,'+response.data,
+				};
 				this.setState({
-					justImg: source
+					[`${name}Img`]: source
 				});
 			}
 		});
 	}
-
+//this.urlArr.push({file:str,fileType:this.type == 'just' ? '10005' : '10006',fileName:name});
 	//listBox  模块
 	listBoxFn (name) {
-		let _this = this.state;
+		let _this = this.state,
+				str   = name === 'just' ?'点击上传身份证人像面照片':'点击上传身份证国徽照片';
+				img   = name === 'just' ?require('^/img/idcard/just.png'):require('^/img/idcard/back.png');
 		return 	(
-			<View style={[cs.listbox,{marginBottom:name==='just'?20:0}]}>	
+			<View style={{marginBottom:name==='just'?20:0,alignItems:'center'}}>	
 				<View style={[cs.imgBox,{position:'relative'},coms.gcencen]}>
 					<TouchableOpacity 
 					onPress={()=>{
-							this.selectPhotoTapped('just')
+							this.selectPhotoTapped(name)
 						}}
 					>
-						<Image style={cs.img} source={_this.justImg?_this.justImg :require('^/img/idcard/just.png')} />
+						<Image style={cs.img} source={_this[`${name}Img`]?_this[`${name}Img`] :img} />
 					</TouchableOpacity>
-					<Text style={cs.text}>{!_this.justImg?'点击上传身份证人像面照片':''}</Text>
-					{_this.justImg ? 
+					<Text style={cs.text}>{!_this[`${name}Img`]?str:''}</Text>
+					{_this[`${name}Img`] ? 
 					<TouchableOpacity 
 						style={cs.iconbox}
 						onPress={()=>{
-							this.setState({justImg:''})
+							this.setState({[`${name}Img`]:''})
 						}}
 					>
 						<Image style={cs.icon} source={require('^/img/icon/close.png')} /> 
@@ -114,61 +135,20 @@ export default class RealName extends Component {
 				<ScrollView>
 					<View style={{paddingTop:26,paddingBottom:30}}>
 						{/* 人像面照片 */}
-						{
-							this.listBoxFn('just')
-						}
+						{this.listBoxFn('just')}
 						{/* 国徽照片 */}
 						{this.listBoxFn('back')}
-						{/* <View style={[cs.listbox,{marginBottom:20}]}>	
-							<View style={[cs.imgBox,{position:'relative'},coms.gcencen]}>
-								<TouchableOpacity 
-								onPress={()=>{
-										this.selectPhotoTapped('just')
-									}}
-								>
-									<Image style={cs.img} source={_this.justImg?_this.justImg :require('^/img/idcard/just.png')} />
-								</TouchableOpacity>
-								<Text style={cs.text}>{!_this.justImg?'点击上传身份证人像面照片':''}</Text>
-								{_this.justImg ? 
-								<TouchableOpacity 
-									style={cs.iconbox}
-									onPress={()=>{
-										this.setState({justImg:''})
-									}}
-								>
-									<Image style={cs.icon} source={require('^/img/icon/close.png')} /> 
-								</TouchableOpacity>
-								: <Text />}
-							</View>
-						</View>
-						<View style={cs.listbox}>
-							<View style={[cs.imgBox,{position:'relative'},coms.gcencen]}>
-								<TouchableOpacity onPress={()=>{
-									this.selectPhotoTapped('back')
-								}}>
-									<Image style={cs.img} source={_this.backImg ? _this.backImg:require('^/img/idcard/back.png')} />
-								</TouchableOpacity>
-								<Text style={cs.text}>{!_this.backImg?'点击上传身份证国徽照片':''}</Text>
-								{_this.backImg ? 
-								<TouchableOpacity 
-									style={cs.iconbox}
-									onPress={()=>{
-										this.setState({backImg:''})
-									}}
-								>
-									<Image style={cs.icon} source={require('^/img/icon/close.png')} /> 
-								</TouchableOpacity>
-								: <Text />}
-							</View>
-						</View> */}
 					</View>
 
 					{/* 订单提交 */}
 					<View style={[coms.gBtnBox,{paddingTop:0}]}>
-						<Text style={[coms.gBtnBoxButton]}
-							onPress={()=>{
-								
-							}}
+						<Text style={[
+							coms.gBtnBoxButton,
+							_this.justImg&&_this.backImg?coms.gBtnBoxButtonOn:''
+						]}
+						onPress={()=>{
+							this.upload();
+						}}
 						>下一步</Text>
 					</View>
 				</ScrollView>

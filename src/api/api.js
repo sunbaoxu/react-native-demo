@@ -33,6 +33,7 @@ Axios.interceptors.response.use(
 
 Axios.interceptors.request.use(
     request => {
+        
         if (request.data instanceof FormData) {
             request.headers['Content-Type'] = 'multipart/form-data';
         }
